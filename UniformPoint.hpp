@@ -24,7 +24,7 @@ inline long long binomCoeff(int n, int k) {
 
 
 // Génère les combinaisons récursivement (c_1,..., c_M) telles que sum(c_i) = H, c_i >= 0, 
-// puis normalise par H pour obtenir des poids sur le simplexe
+// puis normalise par H afin d'obtenir des poids sur le simplexe
 // M         : nb objectifs (M > 0)
 // H         : nb subdivision du simplexe (H > 0)
 // remaining : somme restante à distribuer entre les composantes
@@ -63,6 +63,7 @@ inline std::pair<std::vector<std::vector<double>>, int> uniformPoint(int N, int 
     if (H < 1) H = 1; // Sécurité
 
     std::vector<std::vector<double>> W;
+    W.reserve(binomCoeff(H + M - 1, M - 1));
     std::vector<int> current(M, 0);
     generateSimplexLatticeRec(M, H, H, 0, current, W);
 
